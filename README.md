@@ -16,24 +16,33 @@ For the full walkthrough see
 
 ## Deploy it
 
-1. Click **Use this template** (or clone this repo) to make your own copy, then
-   clone it locally.
-2. Deploy:
+1. Click **Use this template** to make your own copy, then clone it locally.
+2. Install the CLI and sign in:
 
    ```bash
-   npm install -g volken
+   npm install -g @volken/cli
    volken login
+   ```
+
+3. Initialise, then push the files `init` writes. Builds run on what is in your
+   repository, so the `Dockerfile` has to be there before the first deploy. Then
+   deploy:
+
+   ```bash
    volken init
+   git add volken.toml Dockerfile .dockerignore AGENTS.md
+   git commit -m "Add Volken config"
+   git push
    volken deploy
    ```
 
-3. Connect a client with the gateway token from the deploy:
+4. Connect a client with the gateway token from the deploy:
 
    ```bash
    volken connect --install --token <your gateway token>
    ```
 
-4. Ask your AI client to "read https://example.com and summarise it" and watch
+5. Ask your AI client to "read https://example.com and summarise it" and watch
    the call land:
 
    ```bash
